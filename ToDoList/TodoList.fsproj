@@ -1,0 +1,116 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="Contract\List.fs" />
+    <Compile Include="Infrastructure\DBConnect.fs" />
+    <Compile Include="Infrastructure\DBType.fs" />
+    <Compile Include="obj\Debug\.netframework,version=v4.7.2\.NETFramework,Version=v4.7.2.AssemblyAttributes.fs" />
+    <Compile Include="obj\Debug\.netframework,version=v4.7.2\TodoList.AssemblyInfo.fs" />
+    <Compile Include="obj\Debug\net5.0\.NETCoreApp,Version=v5.0.AssemblyAttributes.fs" />
+    <Compile Include="obj\Debug\net5.0\TodoList.AssemblyInfo.fs" />
+    <Compile Include="obj\Debug\net6.0\.NETCoreApp,Version=v6.0.AssemblyAttributes.fs" />
+    <Compile Include="obj\Debug\net6.0\TodoList.AssemblyInfo.fs" />
+    <Compile Include="Startup.fs" />
+    <Compile Include="Domain\Entity\ToDoListEntity.fs" />
+    <Compile Include="Contract\CreateCategory.fs" />
+	  <Compile Include="Infrastructure\ListRepository.fs" />
+	<Compile Include="Domain\Service\ListService.fs" />
+    <Compile Include="Controllers\ListController.fs" />
+    <Compile Include="Program.fs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="bin\Debug\net6.0\appsettings.Development.json" />
+    <Content Include="bin\Debug\net6.0\appsettings.json" />
+    <Content Include="bin\Debug\net6.0\Properties\launchSettings.json" />
+    <Content Include="bin\Debug\net6.0\TodoList.deps.json" />
+    <Content Include="bin\Debug\net6.0\TodoList.runtimeconfig.json" />
+    <Content Include="obj\Debug\net6.0\staticwebassets.build.json" />
+    <Content Include="obj\Debug\net6.0\TodoList.fsproj.FileListAbsolute.txt" />
+    <Content Include="obj\project.assets.json" />
+    <Content Include="obj\TodoList.fsproj.nuget.dgspec.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="bin\Debug\net6.0\cs\FSharp.Core.resources.dll" />
+    <None Include="bin\Debug\net6.0\de\FSharp.Core.resources.dll" />
+    <None Include="bin\Debug\net6.0\DnsClient.dll" />
+    <None Include="bin\Debug\net6.0\es\FSharp.Core.resources.dll" />
+    <None Include="bin\Debug\net6.0\fr\FSharp.Core.resources.dll" />
+    <None Include="bin\Debug\net6.0\FSharp.Core.dll" />
+    <None Include="bin\Debug\net6.0\it\FSharp.Core.resources.dll" />
+    <None Include="bin\Debug\net6.0\ja\FSharp.Core.resources.dll" />
+    <None Include="bin\Debug\net6.0\ko\FSharp.Core.resources.dll" />
+    <None Include="bin\Debug\net6.0\Microsoft.AspNetCore.Server.Kestrel.Https.dll" />
+    <None Include="bin\Debug\net6.0\Microsoft.AspNetCore.Server.Kestrel.Transport.Abstractions.dll" />
+    <None Include="bin\Debug\net6.0\MongoDB.Bson.dll" />
+    <None Include="bin\Debug\net6.0\MongoDB.Driver.Core.dll" />
+    <None Include="bin\Debug\net6.0\MongoDB.Driver.dll" />
+    <None Include="bin\Debug\net6.0\MongoDB.Driver.Legacy.dll" />
+    <None Include="bin\Debug\net6.0\MongoDB.FSharp.dll" />
+    <None Include="bin\Debug\net6.0\MongoDB.Libmongocrypt.dll" />
+    <None Include="bin\Debug\net6.0\Newtonsoft.Json.dll" />
+    <None Include="bin\Debug\net6.0\pl\FSharp.Core.resources.dll" />
+    <None Include="bin\Debug\net6.0\pt-BR\FSharp.Core.resources.dll" />
+    <None Include="bin\Debug\net6.0\runtimes\linux\native\libmongocrypt.so" />
+    <None Include="bin\Debug\net6.0\runtimes\linux\native\libsnappy64.so" />
+    <None Include="bin\Debug\net6.0\runtimes\linux\native\libzstd.so" />
+    <None Include="bin\Debug\net6.0\runtimes\osx\native\libmongocrypt.dylib" />
+    <None Include="bin\Debug\net6.0\runtimes\osx\native\libsnappy64.dylib" />
+    <None Include="bin\Debug\net6.0\runtimes\osx\native\libzstd.dylib" />
+    <None Include="bin\Debug\net6.0\runtimes\win\native\libzstd.dll" />
+    <None Include="bin\Debug\net6.0\runtimes\win\native\mongocrypt.dll" />
+    <None Include="bin\Debug\net6.0\runtimes\win\native\snappy32.dll" />
+    <None Include="bin\Debug\net6.0\runtimes\win\native\snappy64.dll" />
+    <None Include="bin\Debug\net6.0\ru\FSharp.Core.resources.dll" />
+    <None Include="bin\Debug\net6.0\SharpCompress.dll" />
+    <None Include="bin\Debug\net6.0\TodoList.dll" />
+    <None Include="bin\Debug\net6.0\TodoList.exe" />
+    <None Include="bin\Debug\net6.0\TodoList.pdb" />
+    <None Include="bin\Debug\net6.0\tr\FSharp.Core.resources.dll" />
+    <None Include="bin\Debug\net6.0\zh-Hans\FSharp.Core.resources.dll" />
+    <None Include="bin\Debug\net6.0\zh-Hant\FSharp.Core.resources.dll" />
+    <None Include="obj\Debug\.netframework,version=v4.7.2\TodoList.AssemblyInfoInputs.cache" />
+    <None Include="obj\Debug\.netframework,version=v4.7.2\TodoList.assets.cache" />
+    <None Include="obj\Debug\.netframework,version=v4.7.2\TodoList.exe.withSupportedRuntime.config" />
+    <None Include="obj\Debug\.netframework,version=v4.7.2\TodoList.fsproj.AssemblyReference.cache" />
+    <None Include="obj\Debug\.netframework,version=v4.7.2\TodoList.fsproj.CoreCompileInputs.cache" />
+    <None Include="obj\Debug\net5.0\TodoList.AssemblyInfoInputs.cache" />
+    <None Include="obj\Debug\net5.0\TodoList.assets.cache" />
+    <None Include="obj\Debug\net5.0\TodoList.fsproj.AssemblyReference.cache" />
+    <None Include="obj\Debug\net5.0\TodoList.fsproj.CoreCompileInputs.cache" />
+    <None Include="obj\Debug\net6.0\apphost.exe" />
+    <None Include="obj\Debug\net6.0\TodoList.AssemblyInfoInputs.cache" />
+    <None Include="obj\Debug\net6.0\TodoList.assets.cache" />
+    <None Include="obj\Debug\net6.0\TodoList.dll" />
+    <None Include="obj\Debug\net6.0\TodoList.fsproj.AssemblyReference.cache" />
+    <None Include="obj\Debug\net6.0\TodoList.fsproj.CopyComplete" />
+    <None Include="obj\Debug\net6.0\TodoList.fsproj.CoreCompileInputs.cache" />
+    <None Include="obj\Debug\net6.0\TodoList.genruntimeconfig.cache" />
+    <None Include="obj\Debug\net6.0\TodoList.MvcApplicationPartsAssemblyInfo.cache" />
+    <None Include="obj\Debug\net6.0\TodoList.pdb" />
+    <None Include="obj\project.nuget.cache" />
+    <None Include="obj\staticwebassets.pack.sentinel" />
+    <None Include="obj\TodoList.fsproj.nuget.g.props" />
+    <None Include="obj\TodoList.fsproj.nuget.g.targets" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore" Version="2.2.0" />
+    <PackageReference Include="mongocsharpdriver" Version="2.14.1" />
+    <PackageReference Include="MongoDB.FSharp" Version="0.1.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="bin\Debug\.netframework,version=v4.7.2\" />
+    <Folder Include="bin\Debug\net5.0\" />
+    <Folder Include="obj\Debug\net6.0\staticwebassets\" />
+  </ItemGroup>
+
+  <ProjectExtensions><VisualStudio><UserProperties properties_4launchsettings_1json__JsonSchema="" /></VisualStudio></ProjectExtensions>
+
+</Project>
