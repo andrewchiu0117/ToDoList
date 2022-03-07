@@ -9,6 +9,9 @@ open System
 open MongoDB.Driver
 open MongoDB.Driver.Builders
 open MongoDB.FSharp
+open MongoDB.Bson.Serialization
+open FSharp.Json
+open System.Linq
 
 module Repository=
     type ListRepository()=
@@ -26,33 +29,49 @@ module Repository=
 
         let mutable toDoLists : ToDoListEntity list =[]
 
-        member this.GetList(id:string)=
-            Array.find(fun item-> ((ToDoListEntity)item).Id.ToString().Equals(id)) 
-
+        member this.GetList(id:string)= 
+            let bsonId = BsonObjectId(ObjectId(id))
+            let a = ToDoListModelCollection.FindOneById(bsonId)
+            let result = new ToDoListEntity(a._id.ToString(),a.Title)
+            result.Completed<-a.Done
+            result.Priority<-a.Priority
+            result
+            
+            
         member this.CreateList(list :ToDoListEntity) = 
             let id = ObjectId.GenerateNewId()
             ToDoListModelCollection.Insert{
-                DBType.ToDoListModel._id = id
-                DBType.ToDoListModel.CreateTimeStamp = BsonTimestamp(DateTimeOffset(list.CreateTimeStamp).ToUnixTimeSeconds()); 
-                DBType.ToDoListModel.Title = list.Title; 
-                DBType.ToDoListModel.Reminder = BsonTimestamp(DateTimeOffset(list.Reminder).ToUnixTimeSeconds());
-                DBType.ToDoListModel.CategoryId = list.Id.ToString();
-                DBType.ToDoListModel.Done=list.Completed;
+                DBType.ToDoListModel._id=id
+                DBType.ToDoListModel.CreateTimeStamp = BsonTimestamp(DateTimeOffset(list.CreateTimeStamp).ToUnixTimeSeconds())
+                DBType.ToDoListModel.Title = list.Title
+                DBType.ToDoListModel.Reminder = BsonTimestamp(DateTimeOffset(list.Reminder).ToUnixTimeSeconds())
+                DBType.ToDoListModel.CategoryId = list.Id.ToString()
+                DBType.ToDoListModel.Done=list.Completed
                 DBType.ToDoListModel.Priority=list.Priority 
-            }
+            }|>ignore
+            id.ToString()
+  
         
         member this.GetAll() = 
-            ToDoListModelCollection.Find(Query.Empty)
+            ToDoListModelCollection.Find(Query.Empty).ToList()
 
         member this.GetByTitle(titleName:string) = 
             let value = BsonString(titleName)
-            ToDoListModelCollection.Find(Query.GTE("Title", value))
+            ToDoListModelCollection.Find(Query.GTE("Title", value)).ToList()
 
         member this.GetById(id:string) = 
             let bsonId = BsonObjectId(ObjectId(id))
-            ToDoListModelCollection.Find(Query.EQ("_id", bsonId))
+            ToDoListModelCollection.Find(Query.EQ("_id", bsonId)).ToList()
 
-        //member this.DeleteById(id:string) = 
-        //       Array.re
+         member this.UpdateList(list :ToDoListEntity) = 
+            let filter           = QueryBuilder<DBType.ToDoListModel>().EQ((fun x -> x._id), ObjectId(list.Id.ToString()))
+            let updateDefinition = UpdateBuilder<DBType.ToDoListModel>()
+                                    .Set((fun x -> x.Title),list.Title)
+                                    .Set((fun x -> x.Done),list.Completed)
+                                    .Set((fun x -> x.Priority),list.Priority)
+            ToDoListModelCollection.Update(filter,updateDefinition)
 
-        //member this.
+        member this.DeleteById(id:string) = 
+            let filter           = QueryBuilder<DBType.ToDoListModel>().EQ((fun x -> x._id), ObjectId(id))
+            ToDoListModelCollection.Remove(filter)
+        

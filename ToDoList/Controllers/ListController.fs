@@ -17,29 +17,30 @@ type ListController ()=
     inherit ControllerBase()
      static let listService = new ListService(new ListRepository())
     [<HttpGet>]
-    member this.Get() = 
-        let values = [| "values";"values"|]
-        ActionResult<string[]>(values)
+    [<Route("{id}")>]
+    member this.Get(id:string) = 
+        ActionResult<Entity.ToDoListEntity>(listService.getListBy(id))
 
     [<HttpPost>]
     member this.Post([<FromBody>] _ToDoItem :CreateList) = 
-        let a= listService.Create(_ToDoItem)
-        ActionResult<string>(a)
+        ActionResult<string>(listService.Create(_ToDoItem))
 
-    [<HttpDelete("{id}")>]
+    [<HttpDelete>]
+     [<Route("{id}")>]
     member this.Delete(id :string) = 
-        ActionResult<string>(id)
+        listService.DeleteListBy(id)
+        ActionResult<bool>(true)
     
     [<HttpGet>]
     [<Route("lists")>]
     member this.GetAll() = 
-        ActionResult<ToDoListEntity list>(listService.GetAllList())
+        let a= listService.GetAllList()
+        ActionResult<Object>(a)
 
 
     [<HttpPut>]
-    [<Route("lists")>]
     member this.Update([<FromBody>] item : UpdateList) = 
-       // listService.UpdateList(item)
+        listService.UpdateList(item)
         ActionResult<bool>(true)
 
     

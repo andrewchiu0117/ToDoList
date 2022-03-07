@@ -10,8 +10,16 @@ module ContractModel =
         Id :string
         Title : string
         Priority :int
-        Reminder : DateTime
         Completed: bool
+        CreateTimeStamp : DateTime
+        Reminder :DateTime
     }
 
-
+    type ListDetail= {
+        Id :string
+        Title : string
+        Priority :int
+        Completed: bool
+        CreateTimeStamp : DateTime
+        Reminder :DateTime
+    }

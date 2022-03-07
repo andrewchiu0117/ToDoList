@@ -4,6 +4,7 @@ open MongoDB.Bson
 
 module DBType =
 
+    [<CLIMutable>]
     type ToDoListModel ={
         _id : ObjectId
         CreateTimeStamp: BsonTimestamp

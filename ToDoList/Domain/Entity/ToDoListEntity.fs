@@ -5,8 +5,8 @@ exception OuterError of string
 
 open System
 module Entity=
-    type ToDoListEntity(title: string)  =
-        let mutable _Id = Guid.NewGuid()  
+    type ToDoListEntity(id :string ,title: string)  =
+        let mutable _Id = id :string
         let mutable _Title = title : string
         let mutable _Priority =0
         let mutable _CreateTimeStamp  = DateTime.Now
@@ -19,7 +19,7 @@ module Entity=
 
         member this.Completed with get()=_Completed and set(value)= _Completed<-value
 
-        member this.Priority with get()=_Priority 
+        member this.Priority with get()=_Priority and set(value)= _Priority<-value
 
         member this.Id with get()=_Id 
 

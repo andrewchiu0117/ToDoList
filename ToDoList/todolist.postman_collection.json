@@ -1,0 +1,163 @@
+{
+	"info": {
+		"_postman_id": "b902b2c5-62fe-40b4-bcd9-43d660c54201",
+		"name": "todolist",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "get all",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"title\":\"first\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:44379/api/list/lists",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44379",
+					"path": [
+						"api",
+						"list",
+						"lists"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get a list",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"title\":\"first\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:44379/api/list/62245e6d90102c36475d92b6",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44379",
+					"path": [
+						"api",
+						"list",
+						"62245e6d90102c36475d92b6"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create list",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"title\":\"12345\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:44379/api/list",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44379",
+					"path": [
+						"api",
+						"list"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update list",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"Id\":\"62245e3e630f7d1850d3b343\",\r\n    \"Title\":\"sdsdsd\",\r\n    \"Priority\":1,\r\n     \"Completed\":false\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:44379/api/list",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44379",
+					"path": [
+						"api",
+						"list"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete list by id",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"Id\":\"\",\r\n    \"Title\":\"123\",\r\n    \"Priority\":0,\r\n     \"Completed\":false\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:44379/api/list/62245e6d90102c36475d92b6",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44379",
+					"path": [
+						"api",
+						"list",
+						"62245e6d90102c36475d92b6"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
