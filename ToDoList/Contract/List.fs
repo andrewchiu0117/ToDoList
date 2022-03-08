@@ -11,8 +11,7 @@ module ContractModel =
         Title : string
         Priority :int
         Completed: bool
-        CreateTimeStamp : DateTime
-        Reminder :DateTime
+        Editing:bool
     }
 
     type ListDetail= {
@@ -20,6 +19,5 @@ module ContractModel =
         Title : string
         Priority :int
         Completed: bool
-        CreateTimeStamp : DateTime
-        Reminder :DateTime
+        Editing:bool
     }

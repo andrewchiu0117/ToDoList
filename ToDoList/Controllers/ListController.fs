@@ -28,7 +28,7 @@ type ListController ()=
     [<HttpDelete>]
      [<Route("{id}")>]
     member this.Delete(id :string) = 
-        listService.DeleteListBy(id)
+        listService.DeleteListBy(id) |> ignore
         ActionResult<bool>(true)
     
     [<HttpGet>]

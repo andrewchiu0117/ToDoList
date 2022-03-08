@@ -15,8 +15,10 @@ module Service =
                     Id =list._id.ToString();
                     Title=list.Title;Priority=list.Priority;
                     Completed=list.Done;
-                    CreateTimeStamp = unixEpoch.AddSeconds(float list.CreateTimeStamp.Value);
-                    Reminder = unixEpoch.AddSeconds(float list.Reminder.Value)}
+                    Editing = true;
+                    //CreateTimeStamp = unixEpoch.AddSeconds(float list.CreateTimeStamp.Value);
+                    //Reminder = unixEpoch.AddSeconds(float list.Reminder.Value)
+                    }
 
            
             
@@ -32,8 +34,10 @@ module Service =
                     Id =list._id.ToString();
                     Title=list.Title;Priority=list.Priority;
                     Completed=list.Done;
-                    CreateTimeStamp = unixEpoch.AddSeconds(float list.CreateTimeStamp.Value);
-                    Reminder = unixEpoch.AddSeconds(float list.Reminder.Value)}
+                    Editing = false
+                    //CreateTimeStamp = unixEpoch.AddSeconds(float list.CreateTimeStamp.Value);
+                    //Reminder = unixEpoch.AddSeconds(float list.Reminder.Value)
+                    }
                 listRepository.GetAll()|>List.ofSeq|> List.map(a)
                  
            
