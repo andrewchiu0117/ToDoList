@@ -16,6 +16,7 @@ open Repository
 type ListController ()=
     inherit ControllerBase()
      static let listService = new ListService(new ListRepository())
+
     [<HttpGet>]
     [<Route("{id}")>]
     member this.Get(id:string) = 
@@ -23,12 +24,18 @@ type ListController ()=
 
     [<HttpPost>]
     member this.Post([<FromBody>] _ToDoItem :CreateList) = 
-        ActionResult<string>(listService.Create(_ToDoItem))
+        ActionResult<Object>(listService.Create(_ToDoItem))
 
     [<HttpDelete>]
-     [<Route("{id}")>]
+    [<Route("{id}")>]
     member this.Delete(id :string) = 
         listService.DeleteListBy(id) |> ignore
+        ActionResult<bool>(true)
+
+    [<HttpDelete>]
+    [<Route("deleteCompleted")>]
+    member this.DeleteCompleted() = 
+        listService.DeleteListCompleted() |> ignore
         ActionResult<bool>(true)
     
     [<HttpGet>]
@@ -37,10 +44,15 @@ type ListController ()=
         let a= listService.GetAllList()
         ActionResult<Object>(a)
 
-
     [<HttpPut>]
     member this.Update([<FromBody>] item : UpdateList) = 
-        listService.UpdateList(item)
+        listService.UpdateList(item) |> ignore
+        ActionResult<bool>(true)
+
+    [<HttpPut>]
+    [<Route("checkAll")>]
+    member this.UpdateCheckAll([<FromBody>] checks : CheckAll) = 
+        listService.UpdateListCheckAll(checks) |> ignore
         ActionResult<bool>(true)
 
     
