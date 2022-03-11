@@ -1,7 +1,6 @@
 ﻿namespace ToDoList
 
 open Entity
-
 open MongoDB.Driver
 open DBType
 open MongoDB.Bson
@@ -27,8 +26,6 @@ module Repository=
         let db = new DBConnect.DBConnection(ConnectionString, DbName)
         let ToDoListModelCollection = db.GetDB.GetCollection<DBType.ToDoListModel> CollectionName
 
-        let mutable toDoLists : ToDoListEntity list =[]
-
         member this.GetList(id:string)= 
             let bsonId = BsonObjectId(ObjectId(id))
             let a = ToDoListModelCollection.FindOneById(bsonId)
@@ -40,13 +37,13 @@ module Repository=
         member this.CreateList(list :ToDoListEntity) = 
             let id = ObjectId.GenerateNewId()
             ToDoListModelCollection.Insert{
-                DBType.ToDoListModel._id=id
-                DBType.ToDoListModel.CreateTimeStamp = BsonTimestamp(DateTimeOffset(list.CreateTimeStamp).ToUnixTimeSeconds())
-                DBType.ToDoListModel.Title = list.Title
-                DBType.ToDoListModel.Reminder = BsonTimestamp(DateTimeOffset(list.Reminder).ToUnixTimeSeconds())
-                DBType.ToDoListModel.CategoryId = list.Id.ToString()
-                DBType.ToDoListModel.Done=list.Completed
-                DBType.ToDoListModel.Priority=list.Priority 
+                _id=id
+                CreateTimeStamp = BsonTimestamp(DateTimeOffset(list.CreateTimeStamp).ToUnixTimeSeconds())
+                Title = list.Title
+                Reminder = BsonTimestamp(DateTimeOffset(list.Reminder).ToUnixTimeSeconds())
+                CategoryId = list.Id.ToString()
+                Done=list.Completed
+                Priority=list.Priority 
             }|>ignore
             let result = new ToDoListEntity(id.ToString(),list.Title)
             result
@@ -56,7 +53,7 @@ module Repository=
 
         member this.GetByTitle(titleName:string) = 
             let value = BsonString(titleName)
-            ToDoListModelCollection.Find(Query.GTE("Title", value)).ToList()
+            ToDoListModelCollection.Find(Query.EQ("Title", value)).ToList()
 
         member this.GetById(id:string) = 
             let bsonId = BsonObjectId(ObjectId(id))
@@ -77,7 +74,6 @@ module Repository=
                 let updateDefinition = UpdateBuilder<DBType.ToDoListModel>()
                                         .Set((fun x -> x.Done),checks)
                 ToDoListModelCollection.Update(filter,updateDefinition) |> ignore
-            
 
         member this.DeleteById(id:string) = 
             let filter           = QueryBuilder<DBType.ToDoListModel>().EQ((fun x -> x._id), ObjectId(id))

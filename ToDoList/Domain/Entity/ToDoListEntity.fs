@@ -30,7 +30,7 @@ module Entity=
         member this.Reminder with get()=_Reminder 
 
         member this.SetPriority (p)=
-            if(p>4 ||p<1) then raise (OuterError("outer"))
+            if(p>4 ||p<0) then raise (OuterError("outer"))
             else 
                 _Priority<-p
         

@@ -1,0 +1,25 @@
+<div class="todo-item">
+  <div class="todo-item-left">
+    <input type="checkbox" [(ngModel)]="todo.completed" (change)="todoService.doneEdit(todo)">
+    <div *ngIf="!todo.editing; else editingTodo" class="todo-item-label" [ngClass]="{ 'completed' : todo.completed }"
+      (dblclick)="todoService.editTodo(todo)">{{ todo.title }}</div>
+    <ng-template #editingTodo>
+      <input type="text" class="todo-item-edit" [(ngModel)]="todo.title" (blur)="todoService.doneEdit(todo)" (keyup.enter)="todoService.doneEdit(todo)"
+        (keyup.esc)="todoService.cancelEdit(todo)" autofocus>
+    </ng-template>
+  </div>
+  <div>
+    <div class="button-toggle">
+      <mat-button-toggle-group #group="matButtonToggleGroup" [(ngModel)]="todo.priority" (valueChange) = "todoService.priorityEdit(todo)">
+        <mat-button-toggle class="button-toggle-high" [value]="3">High</mat-button-toggle>
+        <mat-button-toggle class="button-toggle-medium" [value]="2">Medium</mat-button-toggle>
+        <mat-button-toggle class="button-toggle-low" [value]="1">Low</mat-button-toggle>
+        <mat-button-toggle class="button-toggle-none" [value]="0">None</mat-button-toggle>
+      </mat-button-toggle-group>
+    </div>
+    <!-- <div class="example-selected-value">Selected value: {{group.value}}</div> -->
+    <div class="remove-item" (click)="todoService.deleteTodo(todo.id)">
+      &times;
+    </div>
+  </div>
+</div>

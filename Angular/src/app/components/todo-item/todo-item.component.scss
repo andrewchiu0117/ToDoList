@@ -1,0 +1,105 @@
+.todo-item {
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  animation-duration: 0.3s;
+}
+
+.mat-button-toggle{
+  background-color: #306cee83;
+  color: #ffffff;
+  font-size: 10px;
+  float: left;
+}
+
+.mat-button-toggle:hover {
+  background-color: transparent;
+  color: #1100ff !important;
+  float: left;  
+}
+
+.mat-button-toggle-checked {
+  background-color: #ec2c4c;
+  color: #ffffff !important;
+  float: left;
+}
+
+.remove-item {
+  cursor: pointer;
+  font-size: 45px;
+  margin-left: 14px;
+  float: left;
+  &:hover {
+    color: red;
+  }
+}
+
+.button-toggle {
+  float: left;
+}
+
+// // .button-toggle-high {
+// //   background-color: white;
+// //   &:hover {
+// //     background: rgb(240, 8, 8);
+// //   }
+// // }
+
+// .button-toggle-high:checked {
+//   background-color: rgb(250, 4, 4);
+//   &:hover {
+//     background: rgb(240, 8, 8);
+//   }
+// }
+
+// .button-toggle-medium {
+//   background-color: white;
+//   &:hover {
+//     background: rgb(240, 84, 84);
+//   }
+// }
+
+// .button-toggle-low {
+//   background-color: white;
+//   &:hover {
+//     background: lightcoral;
+//   }
+// }
+
+// .button-toggle-none {
+//   background-color: white;
+//   &:hover {
+//     background: white;
+//   }
+// }
+
+.todo-item-left { // later
+  display: flex;
+  align-items: center;
+}
+
+.todo-item-label {
+  padding: 10px;
+  border: 1px solid white;
+  margin-left: 12px;
+}
+
+.todo-item-edit {
+  font-size: 24px;
+  color: #2c3e50;
+  margin-left: 12px;
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc; //override defaults
+  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+
+  &:focus {
+    outline: none;
+  }
+}
+
+.completed {
+  text-decoration: line-through;
+  color: grey;
+}
