@@ -16,6 +16,7 @@ open Microsoft.AspNetCore.Mvc
 open Microsoft.Extensions.Configuration
 open Microsoft.Extensions.DependencyInjection
 open Microsoft.AspNetCore.Cors.Infrastructure
+open Swashbuckle.AspNetCore.Swagger
 
 module ConfigurationCors =
    let ConfigureCors(corsBuilder: CorsPolicyBuilder): unit =        
@@ -24,6 +25,7 @@ module ConfigurationCors =
                         .AllowAnyMethod()
                         .AllowCredentials() |> ignore
 open ConfigurationCors
+open Microsoft.OpenApi.Models
 
 type Startup private () =
     new (configuration: IConfiguration) as this =
@@ -44,10 +46,18 @@ type Startup private () =
             //.AddGiraffe()
             |> ignore
         services.AddControllers() |> ignore
+        let info = OpenApiInfo()
+        services.AddSwaggerGen(fun config -> config.SwaggerDoc("v1",info)) |> ignore
+        //services.AddSwaggerGen(); // 註冊 Swagger
+        services.AddOpenApiDocument() |> ignore // 註冊服務加入 OpenAPI 文件
         services.AddHostedService()
 
     // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
     member this.Configure(app: IApplicationBuilder, env: IWebHostEnvironment) =
+        //app.UseOpenApi();    // 啟動 OpenAPI 文件
+        //app.UseSwaggerUi3(); // 啟動 Swagger UI
+        app.UseSwagger()
+        app.UseSwaggerUI(fun config -> config.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1")) |> ignore
         app.UseCors() |> ignore
         app.UseDeveloperExceptionPage()  |> ignore
         app.UseHttpsRedirection() |> ignore
