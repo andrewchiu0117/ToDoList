@@ -1,4 +1,4 @@
-﻿namespace ToDoList
+namespace ToDoList
 
 open System
 open System.Collections.Generic
@@ -6,6 +6,7 @@ open System.Linq
 open System.Threading.Tasks
 open Microsoft.AspNetCore.Mvc
 open Microsoft.Extensions.Logging
+open IService
 open Service
 open ContractModel
 open Entity
@@ -15,44 +16,44 @@ open Repository
 [<Route("api/[controller]")>]
 type ListController ()=
     inherit ControllerBase()
-     static let listService = new ListService(new ListRepository())
+    static let ilistService = ListService(new ListRepository()) :> IListService<ListRepository>
 
     [<HttpGet>]
     [<Route("{id}")>]
-    member this.Get(id:string) = 
-        ActionResult<Entity.ToDoListEntity>(listService.getListBy(id))
+    member this.Get(id:string) =
+        ActionResult<Entity.ToDoListEntity>(ilistService.getListBy(id))
 
     [<HttpPost>]
     member this.Post([<FromBody>] _ToDoItem :CreateList) = 
-        ActionResult<Object>(listService.Create(_ToDoItem))
+        ActionResult<Object>(ilistService.Create(_ToDoItem))
 
     [<HttpDelete>]
     [<Route("{id}")>]
     member this.Delete(id :string) = 
-        listService.DeleteListBy(id) |> ignore
+        ilistService.DeleteListBy(id) |> ignore
         ActionResult<bool>(true)
 
     [<HttpDelete>]
     [<Route("deleteCompleted")>]
     member this.DeleteCompleted() = 
-        listService.DeleteListCompleted() |> ignore
+        ilistService.DeleteListCompleted() |> ignore
         ActionResult<bool>(true)
     
     [<HttpGet>]
     [<Route("lists")>]
     member this.GetAll() = 
-        let a= listService.GetAllList()
+        let a= ilistService.GetAllList()
         ActionResult<Object>(a)
 
     [<HttpPut>]
     member this.Update([<FromBody>] item : UpdateList) = 
-        listService.UpdateList(item) |> ignore
+        ilistService.UpdateList(item) |> ignore
         ActionResult<bool>(true)
 
     [<HttpPut>]
     [<Route("checkAll")>]
     member this.UpdateCheckAll([<FromBody>] checks : CheckAll) = 
-        listService.UpdateListCheckAll(checks) |> ignore
+        ilistService.UpdateListCheckAll(checks) |> ignore
         ActionResult<bool>(true)
 
     

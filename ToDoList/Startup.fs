@@ -49,7 +49,7 @@ type Startup private () =
         let info = OpenApiInfo()
         services.AddSwaggerGen(fun config -> config.SwaggerDoc("v1",info)) |> ignore
         //services.AddSwaggerGen(); // 註冊 Swagger
-        services.AddOpenApiDocument() |> ignore // 註冊服務加入 OpenAPI 文件
+        //services.AddOpenApiDocument() |> ignore // 註冊服務加入 OpenAPI 文件
         services.AddHostedService()
 
     // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

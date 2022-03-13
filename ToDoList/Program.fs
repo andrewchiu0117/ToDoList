@@ -33,7 +33,11 @@ module Program =
         let app = builder.Build()
 
         app.UseHttpsRedirection()
-        app.UseCors("*");
+        app.UseCors(fun options ->
+            options.AllowAnyMethod()
+            options.AllowAnyOrigin()
+            options.AllowAnyHeader()
+            |> ignore);
 
         app.UseAuthorization()
         app.MapControllers()
