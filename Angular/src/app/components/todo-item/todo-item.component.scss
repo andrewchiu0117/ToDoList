@@ -14,22 +14,18 @@
 }
 
 .mat-button-toggle:hover {
-  background-color: transparent;
-  color: #1100ff !important;
+ 
+  color: #2c3e50 !important;
   float: left;  
 }
 
-.mat-button-toggle-checked {
-  background-color: #ec2c4c;
-  color: #ffffff !important;
-  float: left;
-}
+
 
 .remove-item {
   cursor: pointer;
   font-size: 45px;
   margin-left: 14px;
-  float: left;
+  float: right;
   &:hover {
     color: red;
   }

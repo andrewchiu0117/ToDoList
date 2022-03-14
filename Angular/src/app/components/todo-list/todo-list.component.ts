@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { trigger, transition, style, animate } from '@angular/animations';
 import { TodoService } from 'src/app/services/todo.service';
+import { Todo } from 'src/app/interfaces/todo';
+// import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'todo-list',
@@ -24,14 +26,17 @@ import { TodoService } from 'src/app/services/todo.service';
 })
 export class TodoListComponent implements OnInit {
   todoTitle: string;
-
+  content:boolean
   constructor(private todoService: TodoService) {
   }
 
   ngOnInit() {
+  
     this.todoTitle = '';
   }
-
+  showContent(){
+    this.content=!this.content
+  }
   addTodo(): void {
     if (this.todoTitle.trim().length === 0) {
       return;
@@ -40,6 +45,10 @@ export class TodoListComponent implements OnInit {
     this.todoService.addTodo(this.todoTitle);
 
     this.todoTitle = '';
+  }
+  sort(command:string){
+    this.todoService.sort(command)
+    this.content=!this.content
   }
 }
 

@@ -1,25 +1,31 @@
-<div class="todo-item">
+<div class="todo-item" >
+  
   <div class="todo-item-left">
-    <input type="checkbox" [(ngModel)]="todo.completed" (change)="todoService.doneEdit(todo)">
+    <input type="checkbox"  [(ngModel)]="todo.completed" (change)="todoService.doneEdit(todo)">
     <div *ngIf="!todo.editing; else editingTodo" class="todo-item-label" [ngClass]="{ 'completed' : todo.completed }"
-      (dblclick)="todoService.editTodo(todo)">{{ todo.title }}</div>
+      (dblclick)="todoService.editTodo(todo)"  [ngStyle]="{'color': (todo.priority == '3')? '#ff5555':(todo.priority == '2')?'#416ec7':(todo.priority == '1')?'#41a901':'black'}"> {{ todo.title }}</div>
     <ng-template #editingTodo>
       <input type="text" class="todo-item-edit" [(ngModel)]="todo.title" (blur)="todoService.doneEdit(todo)" (keyup.enter)="todoService.doneEdit(todo)"
         (keyup.esc)="todoService.cancelEdit(todo)" autofocus>
     </ng-template>
   </div>
   <div>
-    <div class="button-toggle">
-      <mat-button-toggle-group #group="matButtonToggleGroup" [(ngModel)]="todo.priority" (valueChange) = "todoService.priorityEdit(todo)">
-        <mat-button-toggle class="button-toggle-high" [value]="3">High</mat-button-toggle>
-        <mat-button-toggle class="button-toggle-medium" [value]="2">Medium</mat-button-toggle>
-        <mat-button-toggle class="button-toggle-low" [value]="1">Low</mat-button-toggle>
-        <mat-button-toggle class="button-toggle-none" [value]="0">None</mat-button-toggle>
-      </mat-button-toggle-group>
-    </div>
-    <!-- <div class="example-selected-value">Selected value: {{group.value}}</div> -->
-    <div class="remove-item" (click)="todoService.deleteTodo(todo.id)">
-      &times;
-    </div>
+  <div class="row">  
+      <div class="button-toggle">
+          <div *ngIf="isShowpriorityOptional">
+          <mat-button-toggle-group #group="matButtonToggleGroup" [(ngModel)]="todo.priority" (valueChange) = "todoService.priorityEdit(todo)">
+            <mat-button-toggle  (click) = "isShowpriorityOptional=false"  [ngStyle]="{'background-color':'#ff5555'}"class="button-toggle-high" [value]="3">High</mat-button-toggle>
+            <mat-button-toggle (click) = "isShowpriorityOptional=false" [ngStyle]="{'background-color':'#416ec7'}" class="button-toggle-medium" [value]="2">Medium</mat-button-toggle>
+            <mat-button-toggle (click) = "isShowpriorityOptional=false" [ngStyle]="{'background-color':'#41a901'}" class="button-toggle-low" [value]="1">Low</mat-button-toggle>
+            <mat-button-toggle (click) = "isShowpriorityOptional=false" class="button-toggle-none" [value]="0">None</mat-button-toggle>
+          </mat-button-toggle-group>
+          </div>
+        </div>
+    
+        <div class="remove-item" (click)="remove(todo.id)">
+          &times;
+        </div>
+        <input  type="image" style="margin-top: 16px; margin-left: 10px ;" name="Name of image button" (click)="showDialog(todo)" src="assets/img/471662.png" width="20" alt="text"> 
   </div>
 </div>
+

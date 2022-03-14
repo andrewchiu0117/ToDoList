@@ -155,4 +155,11 @@ export class TodoService {
 
     return this.todos;
   }
+
+  sort(command:string){
+    if(command=="priority")
+      this.todos= this.todos.sort((a,b)=> b.priority-a.priority)
+    if(command=="content")
+      this.todos= this.todos.sort((a,b)=> a.title.toUpperCase().charCodeAt(0)-b.title.toUpperCase().charCodeAt(0))
+  }
 }

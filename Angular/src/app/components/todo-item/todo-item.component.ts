@@ -1,4 +1,6 @@
 import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
+
+
 import { Todo } from 'src/app/interfaces/todo';
 import { TodoService } from 'src/app/services/todo.service';
 
@@ -11,10 +13,19 @@ import { TodoService } from 'src/app/services/todo.service';
 })
 export class TodoItemComponent implements OnInit {
   @Input() todo: Todo;
-
+  public isShowpriorityOptional:boolean =false
   constructor(private todoService: TodoService) { }
 
   ngOnInit() {
   }
+  showDialog(){
+    this.isShowpriorityOptional = !this.isShowpriorityOptional
+  }
+ 
+  
 
+  remove(id:number){
+    this.todoService.deleteTodo(id)
+
+  }
 }
