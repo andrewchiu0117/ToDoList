@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
@@ -8,6 +8,7 @@
     <Compile Include="Contract\List.fs" />
     <Compile Include="Infrastructure\DBConnect.fs" />
     <Compile Include="Infrastructure\DBType.fs" />
+    
     <Compile Include="obj\Debug\.netframework,version=v4.7.2\.NETFramework,Version=v4.7.2.AssemblyAttributes.fs" />
     <Compile Include="obj\Debug\.netframework,version=v4.7.2\TodoList.AssemblyInfo.fs" />
     <Compile Include="obj\Debug\net5.0\.NETCoreApp,Version=v5.0.AssemblyAttributes.fs" />
@@ -17,9 +18,10 @@
     <Compile Include="Startup.fs" />
     <Compile Include="Domain\Entity\ToDoListEntity.fs" />
     <Compile Include="Contract\CreateCategory.fs" />
-    <Compile Include="Domain\Service\IListRepository.fs" />
-    <Compile Include="Infrastructure\ListRepository.fs" />
-    <Compile Include="Controllers\IListService.fs" />
+	<Compile Include="Infrastructure\IListRepository.fs" />
+	<Compile Include="Infrastructure\ListRepository.fs" />
+	<Compile Include="Infrastructure\MockListRepository.fs" />
+    <Compile Include="Domain\Service\IListService.fs" />
     <Compile Include="Domain\Service\ListService.fs" />
     <Compile Include="Controllers\ListController.fs" />
     <Compile Include="Program.fs" />

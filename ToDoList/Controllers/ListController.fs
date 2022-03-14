@@ -30,14 +30,16 @@ type ListController ()=
     [<HttpDelete>]
     [<Route("{id}")>]
     member this.Delete(id :string) = 
-        ilistService.DeleteListBy(id) |> ignore
-        ActionResult<bool>(true)
+        let DBresult = ilistService.DeleteListBy(id)
+        let result = DBresult.Response[0].ToString()
+        ActionResult<string>(result)
 
     [<HttpDelete>]
     [<Route("deleteCompleted")>]
     member this.DeleteCompleted() = 
-        ilistService.DeleteListCompleted() |> ignore
-        ActionResult<bool>(true)
+        let DBresult = ilistService.DeleteListCompleted()
+        let result = DBresult.Response[0].ToString()
+        ActionResult<string>(result)
     
     [<HttpGet>]
     [<Route("lists")>]
@@ -47,13 +49,14 @@ type ListController ()=
 
     [<HttpPut>]
     member this.Update([<FromBody>] item : UpdateList) = 
-        ilistService.UpdateList(item) |> ignore
-        ActionResult<bool>(true)
+        let DBresult = ilistService.UpdateList(item)
+        let result = DBresult.Response[0].ToString()
+        ActionResult<string>(result)
 
     [<HttpPut>]
     [<Route("checkAll")>]
     member this.UpdateCheckAll([<FromBody>] checks : CheckAll) = 
-        ilistService.UpdateListCheckAll(checks) |> ignore
+        let result = ilistService.UpdateListCheckAll(checks)
         ActionResult<bool>(true)
 
     

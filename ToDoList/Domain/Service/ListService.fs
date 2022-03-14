@@ -11,7 +11,7 @@ open IService
 // static let ilistService = ListService(new ListRepository()) :> IListService<ListRepository>
 
 module Service =
-    let ilistRepository = ListRepository() :> IListRepository
+    //let ilistRepository = ListRepository() :> IListRepository
     type ListService(ilistRepository : IListRepository )=
         interface IListService<ListRepository> with 
             member this.ToListDetail(list: DBType.ToDoListModel) =
@@ -50,8 +50,7 @@ module Service =
                 ilistRepository.DeleteById(listId)
 
             member this.DeleteListCompleted(_) =
-                ilistRepository.DeleteCompleted() |> ignore
-            
+                ilistRepository.DeleteCompleted()
 
             member this.getListBy(listId:string) =
                 ilistRepository.GetList(listId)

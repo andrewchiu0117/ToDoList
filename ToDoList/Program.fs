@@ -29,6 +29,7 @@ module Program =
         let builder = WebApplication.CreateBuilder(args)
 
         builder.Services.AddControllers()
+        builder.Services.AddSwaggerGen()
 
         let app = builder.Build()
 
@@ -41,6 +42,8 @@ module Program =
 
         app.UseAuthorization()
         app.MapControllers()
+        app.UseSwagger()
+        app.UseSwaggerUI()
 
         app.Run()
 

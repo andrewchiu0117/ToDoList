@@ -25,7 +25,7 @@ module Repository=
 
         let client         = MongoClient(ConnectionString)
         let db = new DBConnect.DBConnection(ConnectionString, DbName)
-        let ToDoListModelCollection = db.GetDB.GetCollection<DBType.ToDoListModel> CollectionName
+        let ToDoListModelCollection = db.GetDB.GetCollection<ToDoListModel> CollectionName
 
         interface IListRepository with
             member this.GetList(id:string)= 
@@ -62,8 +62,8 @@ module Repository=
                 ToDoListModelCollection.Find(Query.EQ("_id", bsonId)).ToList()
 
             member this.UpdateList(list :ToDoListEntity) = 
-                let filter           = QueryBuilder<DBType.ToDoListModel>().EQ((fun x -> x._id), ObjectId(list.Id.ToString()))
-                let updateDefinition = UpdateBuilder<DBType.ToDoListModel>()
+                let filter           = QueryBuilder<ToDoListModel>().EQ((fun x -> x._id), ObjectId(list.Id.ToString()))
+                let updateDefinition = UpdateBuilder<ToDoListModel>()
                                         .Set((fun x -> x.Title),list.Title)
                                         .Set((fun x -> x.Done),list.Completed)
                                         .Set((fun x -> x.Priority),list.Priority)
@@ -72,17 +72,17 @@ module Repository=
             member this.UpdateListCheckAll(checks :bool) = 
                 let allList = ToDoListModelCollection.Find(Query.Empty).ToList()
                 for item in allList do
-                    let filter           = QueryBuilder<DBType.ToDoListModel>().EQ((fun x -> x._id),  ObjectId(item._id.ToString()))
-                    let updateDefinition = UpdateBuilder<DBType.ToDoListModel>()
+                    let filter           = QueryBuilder<ToDoListModel>().EQ((fun x -> x._id),  ObjectId(item._id.ToString()))
+                    let updateDefinition = UpdateBuilder<ToDoListModel>()
                                             .Set((fun x -> x.Done),checks)
                     ToDoListModelCollection.Update(filter,updateDefinition) |> ignore
 
             member this.DeleteById(id:string) = 
-                let filter           = QueryBuilder<DBType.ToDoListModel>().EQ((fun x -> x._id), ObjectId(id))
+                let filter           = QueryBuilder<ToDoListModel>().EQ((fun x -> x._id), ObjectId(id))
                 ToDoListModelCollection.Remove(filter)
 
             member this.DeleteCompleted() = 
-                let filter           = QueryBuilder<DBType.ToDoListModel>().EQ((fun x -> x.Done), true)
+                let filter           = QueryBuilder<ToDoListModel>().EQ((fun x -> x.Done), true)
                 ToDoListModelCollection.Remove(filter)
 
             
