@@ -13,7 +13,7 @@ open IService
 module Service =
     //let ilistRepository = ListRepository() :> IListRepository
     type ListService(ilistRepository : IListRepository )=
-        interface IListService<ListRepository> with 
+        interface IListService<IListRepository> with 
             member this.ToListDetail(list: DBType.ToDoListModel) =
                 let unixEpoch = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc)
                 {

@@ -15,6 +15,7 @@ open Microsoft.Extensions.Hosting
 open Microsoft.Extensions.Logging
 open Startup
 
+[<System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage>]
 module Program =
     let exitCode = 0
     let CreateHostBuilder args =

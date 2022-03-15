@@ -2,14 +2,15 @@
 
 open MongoDB.Bson
 
+[<System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage>]
 module DBType =
 
     [<CLIMutable>]
     type ToDoListModel ={
         _id : ObjectId
-        CreateTimeStamp: BsonTimestamp
+        //CreateTimeStamp: BsonTimestamp
         Title: string
-        Reminder: BsonTimestamp 
+        //Reminder: BsonTimestamp 
         CategoryId: string 
         Done :bool
         Priority:int

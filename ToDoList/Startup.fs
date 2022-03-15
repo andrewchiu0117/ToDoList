@@ -3,7 +3,7 @@
 
 
 
-
+[<System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage>]
 module Startup
 
 open System
@@ -18,6 +18,8 @@ open Microsoft.Extensions.DependencyInjection
 open Microsoft.AspNetCore.Cors.Infrastructure
 open Swashbuckle.AspNetCore.Swagger
 
+
+[<System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage>]
 module ConfigurationCors =
    let ConfigureCors(corsBuilder: CorsPolicyBuilder): unit =        
          corsBuilder.AllowAnyOrigin()
@@ -27,6 +29,8 @@ module ConfigurationCors =
 open ConfigurationCors
 open Microsoft.OpenApi.Models
 
+
+[<System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage>]
 type Startup private () =
     new (configuration: IConfiguration) as this =
         Startup() then

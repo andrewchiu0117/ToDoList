@@ -9,14 +9,15 @@ open Microsoft.Extensions.Logging
 open IService
 open Service
 open ContractModel
-open Entity
 open Repository
+open IRepository
 
+[<System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage>]
 [<ApiController>]
 [<Route("api/[controller]")>]
 type ListController ()=
     inherit ControllerBase()
-    static let ilistService = ListService(new ListRepository()) :> IListService<ListRepository>
+    static let ilistService = ListService(new ListRepository()) :> IListService<IListRepository>
 
     [<HttpGet>]
     [<Route("{id}")>]

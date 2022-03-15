@@ -1,5 +1,6 @@
 ﻿namespace ToDoList
 open System
+ [<System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage>]
 module ContractModel =
 
     type CreateList = {

@@ -40,9 +40,9 @@ module Repository=
                 let id = ObjectId.GenerateNewId()
                 ToDoListModelCollection.Insert{
                     _id=id
-                    CreateTimeStamp = BsonTimestamp(DateTimeOffset(list.CreateTimeStamp).ToUnixTimeSeconds())
+                    //CreateTimeStamp = BsonTimestamp(DateTimeOffset(list.CreateTimeStamp).ToUnixTimeSeconds())
                     Title = list.Title
-                    Reminder = BsonTimestamp(DateTimeOffset(list.Reminder).ToUnixTimeSeconds())
+                    //Reminder = BsonTimestamp(DateTimeOffset(list.Reminder).ToUnixTimeSeconds())
                     CategoryId = list.Id.ToString()
                     Done=list.Completed
                     Priority=list.Priority 
