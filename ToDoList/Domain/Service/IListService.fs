@@ -16,7 +16,7 @@ module IService =
 
         abstract member DeleteListCompleted: _ -> MongoDB.Driver.WriteConcernResult
 
-        abstract member getListBy: string -> ToDoListEntity
+        abstract member GetListBy: string -> ToDoListEntity
 
         abstract member UpdateList: UpdateList -> MongoDB.Driver.WriteConcernResult
 

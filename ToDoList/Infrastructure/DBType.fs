@@ -11,7 +11,7 @@ module DBType =
         //CreateTimeStamp: BsonTimestamp
         Title: string
         //Reminder: BsonTimestamp 
-        CategoryId: string 
+        //CategoryId: string 
         Done :bool
         Priority:int
         }

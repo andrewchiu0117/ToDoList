@@ -52,7 +52,7 @@ module Service =
             member this.DeleteListCompleted(_) =
                 ilistRepository.DeleteCompleted()
 
-            member this.getListBy(listId:string) =
+            member this.GetListBy(listId:string) =
                 ilistRepository.GetList(listId)
 
             member this.UpdateList(toUpdateList:UpdateList) =

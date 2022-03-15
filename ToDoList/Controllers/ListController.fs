@@ -22,7 +22,7 @@ type ListController ()=
     [<HttpGet>]
     [<Route("{id}")>]
     member this.Get(id:string) =
-        ActionResult<Entity.ToDoListEntity>(ilistService.getListBy(id))
+        ActionResult<Entity.ToDoListEntity>(ilistService.GetListBy(id))
 
     [<HttpPost>]
     member this.Post([<FromBody>] _ToDoItem :CreateList) = 

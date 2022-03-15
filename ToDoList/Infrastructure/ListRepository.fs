@@ -43,7 +43,7 @@ module Repository=
                     //CreateTimeStamp = BsonTimestamp(DateTimeOffset(list.CreateTimeStamp).ToUnixTimeSeconds())
                     Title = list.Title
                     //Reminder = BsonTimestamp(DateTimeOffset(list.Reminder).ToUnixTimeSeconds())
-                    CategoryId = list.Id.ToString()
+                    //CategoryId = list.Id.ToString()
                     Done=list.Completed
                     Priority=list.Priority 
                 }|>ignore

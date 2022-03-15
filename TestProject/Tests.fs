@@ -16,7 +16,6 @@ type TestListService () =
         let todoListModel : DBType.ToDoListModel = {
                                                 _id= ObjectId("622fff0b9b49ea7061db26ba");
                                                 Title = "title";
-                                                CategoryId = "1";
                                                 Done = true;
                                                 Priority = 1}
         let returnListDetail = ilistService.ToListDetail(todoListModel)
@@ -50,7 +49,7 @@ type TestListService () =
     [<TestMethod>]
     member this.TestListService_F_getListBy () =
         let ilistService = Service.ListService(new MockRepository.MockListRepository()) :> IService.IListService<IRepository.IListRepository>
-        let returnValue = ilistService.getListBy("123")
+        let returnValue = ilistService.GetListBy("123")
         Assert.IsTrue(returnValue.Id = "123" && returnValue.Title = "Testing" && returnValue.Priority = 0 && returnValue.Completed = false)
 
     [<TestMethod>]
