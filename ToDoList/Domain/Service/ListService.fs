@@ -8,10 +8,8 @@ open Repository
 open System
 open IService
 
-// static let ilistService = ListService(new ListRepository()) :> IListService<ListRepository>
 
 module Service =
-    //let ilistRepository = ListRepository() :> IListRepository
     type ListService(ilistRepository : IListRepository )=
         interface IListService<IListRepository> with 
             member this.ToListDetail(list: DBType.ToDoListModel) =
@@ -30,8 +28,6 @@ module Service =
                     Title=list.Title;
                     Priority=list.Priority;
                     Completed=list.Completed;
-                    //CreateTimeStamp = unixEpoch.AddSeconds(float list.CreateTimeStamp.Value);
-                    //Reminder = unixEpoch.AddSeconds(float list.Reminder.Value)
                 }
                 b (ilistRepository.CreateList(a))
                 
@@ -41,8 +37,6 @@ module Service =
                     Id =list._id.ToString();
                     Title=list.Title;Priority=list.Priority;
                     Completed=list.Done;
-                //CreateTimeStamp = unixEpoch.AddSeconds(float list.CreateTimeStamp.Value);
-                //Reminder = unixEpoch.AddSeconds(float list.Reminder.Value)
                 }
                 ilistRepository.GetAll()|>List.ofSeq|> List.map(a)
            

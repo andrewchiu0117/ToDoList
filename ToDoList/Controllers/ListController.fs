@@ -21,15 +21,18 @@ type ListController ()=
 
     [<HttpGet>]
     [<Route("{id}")>]
+    // Get List by ID
     member this.Get(id:string) =
         ActionResult<Entity.ToDoListEntity>(ilistService.GetListBy(id))
 
     [<HttpPost>]
+    // Create List
     member this.Post([<FromBody>] _ToDoItem :CreateList) = 
         ActionResult<Object>(ilistService.Create(_ToDoItem))
 
     [<HttpDelete>]
     [<Route("{id}")>]
+    // Delete List by ID
     member this.Delete(id :string) = 
         let DBresult = ilistService.DeleteListBy(id)
         let result = DBresult.Response[0].ToString()
@@ -37,6 +40,7 @@ type ListController ()=
 
     [<HttpDelete>]
     [<Route("deleteCompleted")>]
+    // Delete All Completed List
     member this.DeleteCompleted() = 
         let DBresult = ilistService.DeleteListCompleted()
         let result = DBresult.Response[0].ToString()
@@ -44,11 +48,13 @@ type ListController ()=
     
     [<HttpGet>]
     [<Route("lists")>]
+    // Get All Lists
     member this.GetAll() = 
         let a= ilistService.GetAllList()
         ActionResult<Object>(a)
 
     [<HttpPut>]
+    // Update List
     member this.Update([<FromBody>] item : UpdateList) = 
         let DBresult = ilistService.UpdateList(item)
         let result = DBresult.Response[0].ToString()
@@ -56,6 +62,7 @@ type ListController ()=
 
     [<HttpPut>]
     [<Route("checkAll")>]
+    // Checked All List
     member this.UpdateCheckAll([<FromBody>] checks : CheckAll) = 
         let result = ilistService.UpdateListCheckAll(checks)
         ActionResult<bool>(true)

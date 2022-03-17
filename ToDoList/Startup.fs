@@ -1,4 +1,4 @@
-﻿
+
 
 
 
@@ -40,27 +40,17 @@ type Startup private () =
     member this.ConfigureServices(services: IServiceCollection) =
         // Add framework services.
         services.AddCors(fun options -> 
-            //options.AddPolicy("AllowAll", fun builder -> 
-            //     builder.AllowAnyHeader()
-            //            .AllowAnyOrigin()
-            //            .WithMethods("POST")
-            //            .AllowCredentials() |> ignore))
             options.AddDefaultPolicy(fun builder->
                     builder.AllowAnyMethod() |>ignore))
-            //.AddGiraffe()
             |> ignore
         services.AddControllers() |> ignore
         let info = OpenApiInfo()
         services.AddSwaggerGen(fun config -> config.SwaggerDoc("v1",info)) |> ignore
-        //services.AddSwaggerGen(); // 註冊 Swagger
-        //services.AddOpenApiDocument() |> ignore // 註冊服務加入 OpenAPI 文件
         services.AddHostedService()
 
     // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
     member this.Configure(app: IApplicationBuilder, env: IWebHostEnvironment) =
-        //app.UseOpenApi();    // 啟動 OpenAPI 文件
-        //app.UseSwaggerUi3(); // 啟動 Swagger UI
-        app.UseSwagger()
+        app.UseSwagger() |> ignore
         app.UseSwaggerUI(fun config -> config.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1")) |> ignore
         app.UseCors() |> ignore
         app.UseDeveloperExceptionPage()  |> ignore

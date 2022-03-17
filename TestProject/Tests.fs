@@ -104,25 +104,6 @@ type TestListEntity () =
         let item = new Entity.ToDoListEntity ("123","UnitTest")
         Assert.IsTrue(item.Id = "123")
 
-    //[<TestMethod>]
-    //member this.TestListEntity_E_Entity_Reminder () =
-    //    let item = new Entity.ToDoListEntity ("123","UnitTest")
-    //    item.SetReminder(DateTime.MaxValue)
-    //    Assert.IsTrue(item.Reminder = DateTime.MaxValue)
-
-    //[<TestMethod>]
-    //member this.TestListEntity_F_Entity_Reminder () =
-    //    let item = new Entity.ToDoListEntity ("123","UnitTest")
-    //    let mutable isException = false
-    //    try
-    //        item.SetReminder(DateTime.MinValue)
-    //    with
-    //        | InnerError(str) -> isException <- true
-    //    if isException = true then
-    //        Assert.IsTrue(true)
-    //    else
-    //        Assert.IsTrue(false)
-
 [<TestClass>]
 type TestListRepository () =
     

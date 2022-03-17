@@ -17,7 +17,6 @@
     <Compile Include="obj\Debug\net6.0\TodoList.AssemblyInfo.fs" />
     <Compile Include="Startup.fs" />
     <Compile Include="Domain\Entity\ToDoListEntity.fs" />
-    <Compile Include="Contract\CreateCategory.fs" />
 	<Compile Include="Infrastructure\IListRepository.fs" />
 	<Compile Include="Infrastructure\ListRepository.fs" />
 	<Compile Include="Infrastructure\MockListRepository.fs" />
